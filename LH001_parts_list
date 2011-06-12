@@ -1,23 +1,22 @@
 //////////////////////////// FABRICATE //////////////////////////////
-compression spindle ribs
 acrylic body
-  /LH001/drawings/lh_frame.eps
+  LH001/drawings/lh_frame.eps
   
-compression rod mounts
-  /LH001/drawings/compression_rod_mount
+compression rod supports
+  LH001/drawings/compression_rod_support.eps
 
 ///////////////////////////// ORDER //////////////////////////////////
 
 --- Pump Assembly ---
-1/8" x 4" carbide spindle compression rods
-  http://www.mcmaster.com/#tungsten-rods/=cpse7r
 compression rod bearings (x6)
   https://www.grainger.com/Grainger/wwg/search.shtml?searchQuery=1ZEK2&op=search&Ntt=1ZEK2&N=0&sst=subset&typeaheadSearch.x=24&typeaheadSearch.y=12
+1/8" x 4" carbide spindle compression rods
+  http://www.mcmaster.com/#8788A127
 1/4" x 6" stainless spindle drive shaft
-  http://www.mcmaster.com/#precision-shafts/=cpsdrb
+  http://www.mcmaster.com/#1162K65
 pump driver shaft bearings (x2)
   https://www.grainger.com/Grainger/wwg/search.shtml?searchQuery=1ZEL2&op=search&Ntt=1ZEL2&N=0&sst=subset&typeaheadSearch.x=40&typeaheadSearch.y=3
-compression housing:
+compression housing
   T16311
   http://www.metalsdepot.com/products/hrsteel2.phtml?page=rttube&LimAcc=$LimAcc
 pump stepper
@@ -34,20 +33,26 @@ tygon tubing
 
 --- Stage Assembly ---
 stage guide rods
-  http://www.mcmaster.com/#threaded-rods-and-studs/=by1iwp
-1/4" ACM threaded drive rod:
-  http://www.mcmaster.com/#acme-threaded-rods/=cpsck7
-  ( ask for corresponding flange nut )
-plate driver motor => threaded rod
-  2424K11
-  http://www.mcmaster.com/#shaft-couplings/=cpsk2q
-opto sensors:
+  http://www.mcmaster.com/#6516K24
+linear bearing
+  http://www.mcmaster.com/#6676K61
+1/4" ACM threaded drive rod
+  http://www.mcmaster.com/#93410A606
+corresponding flange nut
+  http://www.mcmaster.com/#95072A881
+co-linear coupling 
+  http://www.mcmaster.com/#2424K11
+opto sensors
   http://search.digikey.com/scripts/DkSearch/dksus.dll?Detail&name=365-1265-ND
 microplate actuator stepper
   http://www.kelinginc.net/NEMA17Motor.html
 microplate actuator driver
   http://www.sparkfun.com/products/10267
 
+
+--- Structural ---
+threaded rod
+  http://www.mcmaster.com/#98805A031
 
 --- Medical ---
 microplate
