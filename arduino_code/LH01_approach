@@ -1,0 +1,144 @@
+// MultiStepper.pde Copyright (C) 2009 Mike McCauley
+#include <AccelStepper.h>
+
+// Define some steppers and the pins the will use
+AccelStepper plateDriver(1,22,23); // "1" specifys mode of, step, direction
+int MS1 = 24;
+int MS2 = 25;
+int SLEEP = 26;
+AccelStepper pump(4, 6, 7, 8, 9); // "4" specifys bipolar w the 4 pins following
+int ledPin = 53;                // choose the pin for the LED
+
+// front opto interruptor
+int optoInterruptorFront = 49;               // choose the input pin
+int optoInterruptorFrontVal = 0;             // variable for reading the pin status
+// rear opto interruptor
+int optoInterruptorRear = 48;               // choose the input pin
+int optoInterruptorRearVal = 0;             // variable for reading the pin status
+
+boolean initalZeroFront = false;
+boolean zeroedRear = false;
+
+void setup(){
+  Serial.begin(9600);
+  pinMode(ledPin, OUTPUT);      // declare LED as output
+  pinMode(optoInterruptorFront, INPUT);     // declare optoInterruptorFront as input
+    // setup of plateDriver
+  plateDriver.setMaxSpeed(800.0);
+  plateDriver.setAcceleration(600.0);
+  pinMode(MS1, OUTPUT);   // set pin 24 to output
+  pinMode(MS2, OUTPUT);   // set pin 25 to output
+  pinMode(SLEEP, OUTPUT); // set pin 26 to output
+  digitalWrite(MS1, LOW);
+  digitalWrite(MS2, LOW);
+  digitalWrite(SLEEP, HIGH);
+    //setup of stepper2
+  pump.setMaxSpeed(300.0);
+  pump.setAcceleration(100.0);
+  //pump.moveTo(10000);
+}
+
+void loop(){
+  optoInterruptorFrontVal = digitalRead(optoInterruptorFront);  // read input value
+  optoInterruptorRearVal = digitalRead(optoInterruptorRear);  // read input value
+  digitalWrite(ledPin, LOW);              // turn LED OFF
+
+  while(initalZeroFront == false){
+    Serial.println(optoInterruptorFrontVal);
+      // Initial zeroing
+    while(optoInterruptorFrontVal == HIGH){      // if front opto is HIGH... move plate towards front
+    //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      plateDriver.move(-1);
+      plateDriver.runToPosition();            //rotate plate driver foward
+      optoInterruptorFrontVal = digitalRead(optoInterruptorFront);
+      Serial.println("zeroing forward");
+    }
+    initalZeroFront = true;
+    digitalWrite(ledPin, HIGH);  // turn LED ON
+    digitalWrite(ledPin, LOW);  // turn LED OFF
+    Serial.println("ZEROED forward");
+    
+    // this is when plate would be placed on the stage
+    delay(1000);
+    
+
+    
+  }
+  // plate resides at front most position
+  // zeroedFront == true at this point
+  
+  
+  frontZeroedTowardsDispenseZero();
+  // plate resides directly under dispensing pipettes
+
+
+  dispenseLoop();
+  // microplate filled
+  
+  
+  returnPlateFront();
+    
+    
+}  
+
+void frontZeroedTowardsDispenseZero() {
+  Serial.println("massive move backwards");
+  plateDriver.move(45000);
+  plateDriver.runToPosition();
+
+    // rear zeroing process
+  while(optoInterruptorRearVal == HIGH){
+    plateDriver.move(1);
+    plateDriver.runToPosition();            //rotate plate driver foward
+    optoInterruptorRearVal = digitalRead(optoInterruptorRear);
+    Serial.println("zeroing back");
+  }
+  Serial.println("ZEROED under pipettes");
+  delay(5000);
+
+}
+
+void dispenseLoop(){
+  for(int i = 0; i < 13; i++){
+        // rewrite these as non-blocking
+    Serial.println(i);
+
+    Serial.println("dispensing " + i);
+      // dispense X volume of liquid
+    pump.move(100);
+    pump.runToPosition();
+
+    Serial.println("advancing");
+      // move plate to next well
+    plateDriver.move(-1000);
+    plateDriver.runToPosition();
+
+    delay(500);
+    
+    
+    
+  }
+  Serial.println("done dispensing");
+}
+
+void returnPlateFront(){
+  Serial.println("massive move forwards");
+  plateDriver.move(-30000);
+  plateDriver.runToPosition();
+  
+   // front zeroing process
+  while(optoInterruptorFrontVal == HIGH){
+    plateDriver.move(-1);
+    plateDriver.runToPosition();            //rotate plate driver foward
+    optoInterruptorFrontVal = digitalRead(optoInterruptorFront);
+    Serial.println("zeroing front loop");
+  }
+  
+  Serial.println("ZEROED at front");
+  
+  for (int i = 0; i < 100; i++){
+    Serial.println("done");
+    delay(500);
+  }
+  
+}

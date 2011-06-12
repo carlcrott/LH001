@@ -1,0 +1,22 @@
+int ledPin = 53;                // choose the pin for the LED
+int inputPin = 22;               // choose the input pin
+int val = 0;                    // variable for reading the pin status
+
+void setup() {
+  Serial.begin(9600);  
+  pinMode(ledPin, OUTPUT);      // declare LED as output
+  pinMode(inputPin, INPUT);     // declare photo interrupter as input
+}
+
+void loop(){
+  val = digitalRead(inputPin);  // read input value
+  Serial.print(val);
+  //delay(500);
+
+  if (val == LOW) {            // check if the input is LOW    
+    digitalWrite(ledPin, LOW);  // turn LED OFF
+  } else {
+    digitalWrite(ledPin, HIGH); // turn LED ON
+  }
+
+}
