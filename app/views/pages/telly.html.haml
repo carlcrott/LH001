@@ -1,0 +1,35 @@
+%h1= @title
+
+%h1
+  Pages#home
+%p
+  Find me in nevarLand
+  
+- form_for :command do |f|
+  %label{ :for => "name" } Name
+  %br
+  = f.text_field :name
+
+  %br
+  %br
+  
+  %label{ :for => "technique" } Technique
+  %br
+  = f.text_field :technique
+  
+  %br
+  %br
+
+  %label{ :for => "xMove" } X Move
+  %br
+  = f.text_field :xMove
+  
+  %br
+  %br
+
+  %label{ :for => "yMove" } Y Move
+  %br
+  = f.text_field :yMove  
+  
+
+  -# f.collection_select

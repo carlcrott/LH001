@@ -16,7 +16,7 @@ AccelStepper plateDriver(4,42,43,44,45); // "1" specifys mode of, step, directio
 int MS1 = 24;
 int MS2 = 25;
 int SLEEP = 26;
-AccelStepper pump(1, 22,23); // "4" specifys bipolar w the 4 pins following
+AccelStepper pump(1,22,23); // "4" specifys bipolar w the 4 pins following
 
 // front opto interruptor
 int optoInterruptorFront = 49;               // choose the input pin
@@ -46,14 +46,13 @@ void setup(){
   //digitalWrite(MS2, LOW);
   //digitalWrite(SLEEP, HIGH);
   //setup of peristaltic pump stepper 
-  pump.setMaxSpeed(300.0);
-  pump.setAcceleration(100.0);
+  pump.setMaxSpeed(2000.0);
+  pump.setAcceleration(800.0);
   //pump.moveTo(10000);
 }
 
 void loop(){
   // waits for a new client:
-  Serial.println("waiting");
   Client client = server.available();
   if (client) {
     if (client.available() >= 3 ) {
@@ -125,15 +124,18 @@ void dispenseLoop(){
   for(int i = 0; i < 13; i++){
     // rewrite these as non-blocking
     Serial.println(i);
+// use these to slow it down a bit
+//  plateDriver.setMaxSpeed(1000.0);
+  //plateDriver.setAcceleration(800.0);
 
     Serial.println("dispensing " + i);
     // dispense X volume of liquid
-    pump.move(100);
+    pump.move(1000);
     pump.runToPosition();
 
     Serial.println("advancing");
     // move plate to next well
-    plateDriver.move(1000);
+    plateDriver.move(1200);
     plateDriver.runToPosition();
 
     delay(500);
@@ -146,12 +148,12 @@ void dispenseLoop(){
 
 void returnPlateFront(){
   Serial.println("massive move forwards");
-  plateDriver.move(-30000);
+  plateDriver.move(22000);
   plateDriver.runToPosition();
 
   // front zeroing process
   while(optoInterruptorFrontVal == HIGH){
-    plateDriver.move(-1);
+    plateDriver.move(-5);
     plateDriver.runToPosition();            //rotate plate driver foward
     optoInterruptorFrontVal = digitalRead(optoInterruptorFront);
     Serial.println("zeroing front loop");

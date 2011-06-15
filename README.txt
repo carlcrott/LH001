@@ -29,6 +29,8 @@ License:
 Creative Commons Attribution-ShareAlike 3.0 Unported License. 
 
 
+see it live:
+http://www.youtube.com/watch?v=ZY5IY5CZ1es
 
 
 
@@ -37,6 +39,7 @@ Creative Commons Attribution-ShareAlike 3.0 Unported License.
 1) build machine
 2) script/server
 3) localhost:3000/pages/foo
+4) make sure you've got the opto interruptors aligned! ( otherwise the LH001 will tear itself apart )
 
 
 

@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @command.name %>
+</p>
+
+<p>
+  <b>Technique:</b>
+  <%=h @command.technique %>
+</p>
+
+
+<%= link_to 'Edit', edit_command_path(@command) %> |
+<%= link_to 'Back', commands_path %>

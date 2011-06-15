@@ -1,0 +1,22 @@
+<h1>Listing commands</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Technique</th>
+  </tr>
+
+<% @commands.each do |command| %>
+  <tr>
+    <td><%=h command.name %></td>
+    <td><%=h command.technique %></td>
+    <td><%= link_to 'Show', command %></td>
+    <td><%= link_to 'Edit', edit_command_path(command) %></td>
+    <td><%= link_to 'Destroy', command, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New command', new_command_path %>

@@ -1,0 +1,20 @@
+<h1>Editing command</h1>
+
+<% form_for(@command) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :technique %><br />
+    <%= f.text_field :technique %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @command %> |
+<%= link_to 'Back', commands_path %>
