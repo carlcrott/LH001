@@ -28,7 +28,21 @@ README               # http://en.wikipedia.org/wiki/Recursion
 License:
 Creative Commons Attribution-ShareAlike 3.0 Unported License. 
 
+
+
+
+
+//////////////////////////// Installation /////////////////////////////
+
+1) build machine
+2) script/server
+3) localhost:3000/pages/foo
+
+
+
+
 v1.0
 www.black-glass.com
 blackglasssystems@gmail.com
-dont stop, clever humans.
+
+clever humans.
