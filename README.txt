@@ -41,6 +41,9 @@ http://www.youtube.com/watch?v=ZY5IY5CZ1es
 3) localhost:3000/pages/foo
 4) make sure you've got the opto interruptors aligned! ( otherwise the LH001 will tear itself apart )
 
+//////////////////////////// Key Words /////////////////////////////
+open source, ruby, ruby on rails, binary protocol, telnet, medical liquid handler, high throughput, 
+automated pipette, arduino, arduino MEGA 2560, high level control, open protocol
 
 
 
