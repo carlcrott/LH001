@@ -12,11 +12,11 @@ Server server(23);
 boolean gotAMessage = false; // whether or not you got a message from the client yet
 
 // Define some steppers and the pins the will use
-AccelStepper plateDriver(4,42,43,44,45); // "1" specifys mode of, step, direction
+AccelStepper plateDriver(4,42,43,44,45); // "4" specifys bipolar w the 4 pins following
 int MS1 = 24;
 int MS2 = 25;
 int SLEEP = 26;
-AccelStepper pump(1,22,23); // "4" specifys bipolar w the 4 pins following
+AccelStepper pump(1,22,23); // "1" specifys mode of, step, direction
 
 // front opto interruptor
 int optoInterruptorFront = 49;               // choose the input pin
